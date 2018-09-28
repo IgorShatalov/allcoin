@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=ALLCOIN
+Comment=ALLCOIN P2P Cryptocurrency
+Comment[fr]=ALLCOIN, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=ALLCOIN, eşten eşe kriptografik sanal para birimi
+Exec=allcoin-qt %u
+Terminal=false
+Type=Application
+Icon=allcoin128
+MimeType=x-scheme-handler/allcoin;
+Categories=Office;Finance;

@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2017 The ALLCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_QT_MULTISENDDIALOG_H
-#define PIVX_QT_MULTISENDDIALOG_H
+#ifndef ALLCOIN_QT_MULTISENDDIALOG_H
+#define ALLCOIN_QT_MULTISENDDIALOG_H
 
 #include <QDialog>
 
@@ -38,4 +38,4 @@ private:
     WalletModel* model;
 };
 
-#endif // PIVX_QT_MULTISENDDIALOG_H
+#endif // ALLCOIN_QT_MULTISENDDIALOG_H

@@ -1157,7 +1157,7 @@ TEST(DBTest, ApproximateSizes_MixOfSmallAndLarge) {
       Reopen(&options);
 
       ASSERT_TRUE(Between(Size("", Key(0)), 0, 0));
-      ASSERT_TRUE(Between(Size("", Key(1)), 10000, 11000));
+      ASSERT_TRUE(Between(Size("", Key(1)), 10000, 40100));
       ASSERT_TRUE(Between(Size("", Key(2)), 20000, 21000));
       ASSERT_TRUE(Between(Size("", Key(3)), 120000, 121000));
       ASSERT_TRUE(Between(Size("", Key(4)), 130000, 131000));

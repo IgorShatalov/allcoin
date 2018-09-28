@@ -1,0 +1,26 @@
+# /etc/conf.d/allcoind: config file for /etc/init.d/allcoind
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/allcoin/allcoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/allcoind"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/allcoind.pid"
+
+# Where to write allcoind data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/allcoind"
+
+# User and group to own allcoind process
+#BITCOIND_USER="allcoin"
+#BITCOIND_GROUP="allcoin"
+
+# Path to allcoind executable
+#BITCOIND_BIN="/usr/bin/allcoind"
+
+# Nice value to run allcoind under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""
