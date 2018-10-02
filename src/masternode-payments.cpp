@@ -312,6 +312,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
 
     CAmount blockValue = GetBlockValue(pindexPrev->nHeight);
     CAmount masternodePayment = GetMasternodePayment(pindexPrev->nHeight, blockValue, 0, fZALCStake);
+	CAmount fundPayment = GetFundPayment(pindexPrev->nHeight);
 
     if (hasPayment) {
         if (fProofOfStake) {
@@ -340,6 +341,13 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
         CBitcoinAddress address2(address1);
 
         LogPrint("masternode","Masternode payment of %s to %s\n", FormatMoney(masternodePayment).c_str(), address2.ToString().c_str());
+    }
+	if (fundPayment > 0){
+        unsigned int i = txNew.vout.size();
+        txNew.vout.resize(i + 1);
+        txNew.vout[i].scriptPubKey = GetScriptForDestination(CBitcoinAddress("mRDFWmxssaNFNUDQEmodB3qc8rx5T4rHSN").Get());
+        txNew.vout[i].nValue = fundPayment;
+        LogPrint("fundPayment","Dev fee payment for %lld\n", fundPayment);
     }
 }
 

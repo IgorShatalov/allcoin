@@ -1756,43 +1756,34 @@ double ConvertBitsToDouble(unsigned int nBits)
 
 int64_t GetBlockValue(int nHeight)
 {
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200 && nHeight > 0)
-            return 250000 * COIN;
-    }
-
     int64_t nSubsidy = 0;
+	//------------------------------------
     if (nHeight == 0) {
-        nSubsidy = 60001 * COIN;
-    } else if (nHeight < 86400 && nHeight > 0) {
-        nSubsidy = 250 * COIN;
-    } else if (nHeight < (Params().NetworkID() == CBaseChainParams::TESTNET ? 145000 : 151200) && nHeight >= 86400) {
-        nSubsidy = 225 * COIN;
-    } else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight >= 151200) {
-        nSubsidy = 45 * COIN;
-    } else if (nHeight <= 302399 && nHeight > Params().LAST_POW_BLOCK()) {
-        nSubsidy = 45 * COIN;
-    } else if (nHeight <= 345599 && nHeight >= 302400) {
-        nSubsidy = 40.5 * COIN;
-    } else if (nHeight <= 388799 && nHeight >= 345600) {
-        nSubsidy = 36 * COIN;
-    } else if (nHeight <= 431999 && nHeight >= 388800) {
-        nSubsidy = 31.5 * COIN;
-    } else if (nHeight <= 475199 && nHeight >= 432000) {
-        nSubsidy = 27 * COIN;
-    } else if (nHeight <= 518399 && nHeight >= 475200) {
-        nSubsidy = 22.5 * COIN;
-    } else if (nHeight <= 561599 && nHeight >= 518400) {
-        nSubsidy = 18 * COIN;
-    } else if (nHeight <= 604799 && nHeight >= 561600) {
-        nSubsidy = 13.5 * COIN;
-    } else if (nHeight <= 647999 && nHeight >= 604800) {
-        nSubsidy = 9 * COIN;
-    } else if (nHeight < Params().Zerocoin_Block_V2_Start()) {
-        nSubsidy = 4.5 * COIN;
-    } else {
-        nSubsidy = 5 * COIN;
-    }
+        nSubsidy = 500000 * COIN; // COIN, CENT = COIN / 100; 0,40 COIN = 40 * CENT
+    } else if (nHeight < 10000 && nHeight > 2) {
+        nSubsidy = 40 * CENT;
+    } else if (nHeight < 15000 && nHeight >= 10000) {
+        nSubsidy = 140 * CENT;
+	} else if (nHeight < 18000 && nHeight >= 15000) {
+        nSubsidy = 140 * CENT;
+    } else if (nHeight < 25000 && nHeight >= 18000) {
+        nSubsidy = 180 * CENT;
+    } else if (nHeight < 40000 && nHeight >= 25000) {
+        nSubsidy = 160 * CENT;
+    } else if (nHeight < 100000 && nHeight >= 40000) {
+        nSubsidy = 140 * CENT;
+    } else if (nHeight < 150000 && nHeight >= 100000) {
+        nSubsidy = 240 * CENT;
+    } else if (nHeight < 200000 && nHeight >= 150000) {
+        nSubsidy = 140 * CENT		;
+    } else if (nHeight < 250000 && nHeight >= 200000) {
+        nSubsidy = 120 * CENT;
+    } else if (nHeight < 500000 && nHeight >= 250000) {
+        nSubsidy = 120 * CENT; 
+	} else if(nHeight >= 500000){
+		nSubsidy = 60 * CENT;
+	}
+	
     return nSubsidy;
 }
 
@@ -2035,30 +2026,72 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 {
     int64_t ret = 0;
 
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200)
-            return 0;
-    }
-
-    if (nHeight <= 43200) {
-        ret = blockValue / 5;
-    } else if (nHeight < 86400 && nHeight > 43200) {
-        ret = blockValue / (100 / 30);
-    } else if (nHeight < (Params().NetworkID() == CBaseChainParams::TESTNET ? 145000 : 151200) && nHeight >= 86400) {
-        ret = 50 * COIN;
-    } else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight >= 151200) {
-        ret = blockValue / 2;
-    } else if (nHeight < Params().Zerocoin_Block_V2_Start()) {
-        return 100 * COIN;
-    } else {
-        //When zALC is staked, masternode only gets 2 ALC
-        ret = 3 * COIN;
-        if (isZALCStake)
-            ret = 2 * COIN;
-    }
+	//=======================================================
+    if (nHeight == 0) {
+        ret = 500000 * COIN; // COIN, CENT = COIN / 100; 0,40 COIN = 40 * CENT
+    } else if (nHeight < 10000 && nHeight > 2) {
+        ret = 60 * CENT;
+    } else if (nHeight < 15000 && nHeight >= 10000) {
+        ret = 210 * CENT;
+	} else if (nHeight < 18000 && nHeight >= 15000) {
+        ret = 210 * CENT;
+    } else if (nHeight < 25000 && nHeight >= 18000) {
+        ret = 270 * CENT;
+    } else if (nHeight < 40000 && nHeight >= 25000) {
+        ret = 240 * CENT;
+    } else if (nHeight < 100000 && nHeight >= 40000) {
+        ret = 210 * CENT;
+    } else if (nHeight < 150000 && nHeight >= 100000) {
+        ret = 360 * CENT;
+    } else if (nHeight < 200000 && nHeight >= 150000) {
+        ret = 210 * CENT		;
+    } else if (nHeight < 250000 && nHeight >= 200000) {
+        ret = 180 * CENT;
+    } else if (nHeight < 500000 && nHeight >= 250000) {
+        ret = 180 * CENT; 
+	} else if(nHeight >= 500000){
+		ret = 90 * CENT;
+	}
 
     return ret;
 }
+
+int64_t GetFundPayment(int nHeight)
+{
+    int64_t ret = 0;
+
+    if (nHeight == 0) {
+        ret = 500000 * COIN;
+    } else if (nHeight < 10000 && nHeight > 2) {
+        ret = 100 * CENT;
+    } else if (nHeight < 15000 && nHeight >= 10000) {
+        ret = 350 * CENT;
+	} else if (nHeight < 18000 && nHeight >= 15000) {
+        ret = 350 * CENT;
+    } else if (nHeight < 25000 && nHeight >= 18000) {
+        ret = 450 * CENT;
+    } else if (nHeight < 40000 && nHeight >= 25000) {
+        ret = 400 * CENT;
+    } else if (nHeight < 100000 && nHeight >= 40000) {
+        ret = 350 * CENT;
+    } else if (nHeight < 150000 && nHeight >= 100000) {
+        ret = 600 * CENT;
+    } else if (nHeight < 200000 && nHeight >= 150000) {
+        ret = 350 * CENT		;
+    } else if (nHeight < 250000 && nHeight >= 200000) {
+        ret = 300 * CENT;
+    } else if (nHeight < 500000 && nHeight >= 250000) {
+        ret = 300 * CENT; 
+	} else if(nHeight >= 500000){
+		ret = 150 * CENT;
+	}
+
+    return ret;
+}
+
+
+
+
 
 bool IsInitialBlockDownload()
 {
@@ -3036,7 +3069,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
-    CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight)+GetMasternodePayment(pindex->pprev->nHeight, 0,0, false);
+    CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight) + GetMasternodePayment(pindex->pprev->nHeight, 0,0, false) + GetFundPayment(pindex->pprev->nHeight);
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
 

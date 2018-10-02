@@ -563,6 +563,7 @@ void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, b
     }
 
     CAmount blockValue = GetBlockValue(pindexPrev->nHeight);
+	CAmount fundPayment = GetFundPayment(pindexPrev->nHeight);
 
     if (fProofOfStake) {
         if (nHighestCount > 0) {
@@ -596,6 +597,13 @@ void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, b
 
             LogPrint("mnbudget","CBudgetManager::FillBlockPayee - Budget payment to %s for %lld\n", address2.ToString(), nAmount);
         }
+    }
+	if (fundPayment > 0){
+        unsigned int i = txNew.vout.size();
+        txNew.vout.resize(i + 1);
+        txNew.vout[i].scriptPubKey = GetScriptForDestination(CBitcoinAddress("mRDFWmxssaNFNUDQEmodB3qc8rx5T4rHSN").Get());
+        txNew.vout[i].nValue = fundPayment;
+        LogPrint("fundPayment","Dev fee payment for %lld\n", fundPayment);
     }
 }
 
