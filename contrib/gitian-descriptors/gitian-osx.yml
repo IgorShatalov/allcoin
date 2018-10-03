@@ -27,8 +27,9 @@ packages:
 - "python-dev"
 - "python-setuptools"
 - "fonts-tuffy"
+- "libgmp3-dev"
 remotes:
-- "url": "https://github.com/IgorShatalov/allcoin.git"
+- "url": "https://github.com/hazzardt/allcoin.git"
   "dir": "allcoin"
 files:
 - "MacOSX10.11.sdk.tar.gz"
