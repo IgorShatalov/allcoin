@@ -2,9 +2,9 @@
 
 # BUILD IN DOCKER
 COIN=allcoin
-cd /${COIN}/depends
-make
-make install
+# cd /${COIN}/depends
+# make
+# make install
 cd /${COIN}
 ./autogen.sh
 ./configure
