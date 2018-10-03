@@ -30,7 +30,7 @@ WORKDIR /allcoin
 
 COPY . .
 
-RUN ./contrib/build-docker.sh
+RUN /allcoin/contrib/build-docker.sh
 
 VOLUME ["/root/.allcoin"]
 
