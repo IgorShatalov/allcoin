@@ -2,7 +2,4 @@ SDKs/
 work/
 built/
 sources/
-i686*
-mips*
-arm*
-aarch64*
+config.site
