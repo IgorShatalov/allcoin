@@ -258,7 +258,7 @@ RES_ICONS = \
   qt/res/icons/tx_input.png \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
-  qt/res/icons/unit_allcoin.png \
+  qt/res/icons/unit_alc.png \
   qt/res/icons/unit_malc.png \
   qt/res/icons/unit_ualc.png \
   qt/res/icons/unit_talc.png \
