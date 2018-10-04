@@ -53,10 +53,10 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("00000eb57e3e9fcd176a5956c682ff1dbc02d0d94e14377dedb5d369a2c414a2"));
+    (0, uint256("0x00000007e473940c900e35c7cd0a8a70e7eee825e2c0906135cf891969599169"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1538411593, // * UNIX timestamp of last checkpoint block
+    1538672043, // * UNIX timestamp of last checkpoint block
     0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2800        // * estimated number of transactions per day after checkpoint
@@ -74,7 +74,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1454124731,
+    1538672043,
     0,
     100};
 
@@ -163,20 +163,21 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1538411593;
+        genesis.nTime = 1538672043;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 1038221;
+        genesis.nNonce = 739607;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000eb57e3e9fcd176a5956c682ff1dbc02d0d94e14377dedb5d369a2c414a2"));
-        assert(genesis.hashMerkleRoot == uint256("0xfaaeda3332681f6e615290ba61c2f86e2e9bbb8e7734b56e27b6bd20128146dd"));
-
+        assert(hashGenesisBlock == uint256("0x00000007e473940c900e35c7cd0a8a70e7eee825e2c0906135cf891969599169"));
+        assert(genesis.hashMerkleRoot == uint256("0xa31751ff22d02a09f9f10a15a05e529608a14b14d9f7aa13d418939c0eb7a673"));
+        vSeeds.clear();
+    /*
         vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "allcoin.seed.fuzzbawls.pw"));     // Primary DNS Seeder from Fuzzbawls
         vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "allcoin.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder from Fuzzbawls
         vSeeds.push_back(CDNSSeedData("coin-server.com", "coin-server.com"));         // Single node address
         vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net")); // Single node address
         vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));           // Single node address
-
+    */
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 212);
@@ -268,18 +269,19 @@ public:
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1454124731;
-        genesis.nNonce = 2402015;
+        genesis.nNonce = 1227084;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
+        assert(hashGenesisBlock == uint256("0x0000054e61514d7a52a010bcef95be7a14511307011901c15031ef85cf6c856a"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
+        /*
         vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "allcoin-testnet.seed.fuzzbawls.pw"));
         vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "allcoin-testnet.seed2.fuzzbawls.pw"));
         vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net"));
         vSeeds.push_back(CDNSSeedData("88.198.192.110", "88.198.192.110"));
-
+    */
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23); // Testnet allcoin addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet allcoin script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
@@ -343,7 +345,7 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 1259;
-        assert(hashGenesisBlock == uint256("0x4f023a2120d9127b21bbad01724fdb79b519f593f2a85b60d3d79160ec5f29df"));
+        assert(hashGenesisBlock == uint256("0x6990d608f378b4a58e99e83bf8d5961af8ceab165002259e52fa59c28a3419b3"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
