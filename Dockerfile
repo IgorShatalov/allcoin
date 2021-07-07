@@ -15,6 +15,7 @@ RUN apt-get update && \
          libevent-dev \
          bsdmainutils \
          vim \
+         libgmp3-dev \
          software-properties-common && \
          rm -rf /var/lib/apt/lists/* && apt-get clean
 
